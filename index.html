@@ -49,6 +49,36 @@
             box-sizing: border-box;
         }
 
+        .top-nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1rem 2rem;
+            background: rgba(250, 250, 250, 0.92);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border-bottom: 1px solid #f0f0f0;
+            z-index: 100;
+        }
+
+        .top-nav a {
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: #999;
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: color 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: #111;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
             background: #fafafa;
@@ -130,6 +160,11 @@
     </style>
 </head>
 <body>
+    <nav class="top-nav">
+        <a href="/geo-bookmarks.html">Geo Bookmarks</a>
+        <a href="/todos.html">Todos</a>
+        <a href="/audio-clips.html">Audio Clips</a>
+    </nav>
     <div class="container">
         <div class="logo-mark"></div>
         <h1>Kielbasa Labs LLC</h1>
