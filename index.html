@@ -49,6 +49,31 @@
             box-sizing: border-box;
         }
 
+        /* ── Accessibility ── */
+        .skip-link {
+            position: absolute;
+            top: -100%;
+            left: 1rem;
+            background: #111;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            font-size: 0.85rem;
+            z-index: 1000;
+            text-decoration: none;
+        }
+        .skip-link:focus { top: 0.5rem; }
+
+        :focus-visible {
+            outline: 2px solid #ff6b35;
+            outline-offset: 3px;
+            border-radius: 3px;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .carousel-slide { transition: none; }
+        }
+
         /* ── Nav ── */
         .top-nav {
             position: fixed;
@@ -331,6 +356,13 @@
             margin-top: 1.5rem;
         }
 
+        .slide-excerpt {
+            font-size: 0.8rem;
+            color: rgba(0,0,0,0.42);
+            line-height: 1.55;
+            margin-top: 0.55rem;
+        }
+
         .slide-link {
             display: inline-flex;
             align-items: center;
@@ -385,7 +417,8 @@
     </style>
 </head>
 <body>
-    <nav class="top-nav">
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <nav class="top-nav" aria-label="Main navigation">
         <div class="nav-logo"></div>
         <div class="nav-links">
             <a href="/geo-bookmarks.html">Geo Bookmarks</a>
@@ -394,12 +427,12 @@
             <a href="/careers.html">Careers</a>
             <a href="/contact.html">Contact</a>
         </div>
-        <button class="hamburger" id="hamburger" aria-label="Open menu">
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
             <span></span><span></span><span></span>
         </button>
     </nav>
 
-    <div class="mobile-menu" id="mobile-menu">
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
         <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&#x2715;</button>
         <nav class="mobile-nav-links">
             <a href="/geo-bookmarks.html">Geo Bookmarks</a>
@@ -410,19 +443,21 @@
         </nav>
     </div>
 
+    <main id="main">
     <div class="container">
 
         <!-- Apps carousel -->
         <div class="carousel-section">
-            <div class="carousel-wrapper" id="carousel">
+            <div class="carousel-wrapper" id="carousel" role="region" aria-label="Featured apps" aria-roledescription="carousel">
                 <!-- Slide 1: Geo Bookmarks -->
-                <a href="/geo-bookmarks.html" class="carousel-slide active">
+                <a href="/geo-bookmarks.html" class="carousel-slide active" role="group" aria-roledescription="slide" aria-label="1 of 3: Geo Bookmarks">
                     <div class="slide-inner slide-geo">
                         <div class="slide-top">
                             <div class="slide-text">
                                 <div class="slide-app-name">Geo Bookmarks</div>
                                 <div class="slide-tagline">Remember every place that matters.</div>
                                 <div class="slide-coming-soon">Coming Soon</div>
+                                <div class="slide-excerpt">Save any place that matters — with photos, notes, and everything you want to remember...</div>
                             </div>
                             <img class="slide-icon-geo" src="/images/icon-geo-bookmarks.png" alt="Geo Bookmarks icon">
                         </div>
@@ -433,13 +468,14 @@
                 </a>
 
                 <!-- Slide 2: Todos -->
-                <a href="/todos.html" class="carousel-slide">
+                <a href="/todos.html" class="carousel-slide" role="group" aria-roledescription="slide" aria-label="2 of 3: Todos">
                     <div class="slide-inner slide-todos">
                         <div class="slide-top">
                             <div class="slide-text">
                                 <div class="slide-app-name">Todos</div>
                                 <div class="slide-tagline">Tasks, your way.</div>
                                 <div class="slide-coming-soon">Coming Soon</div>
+                                <div class="slide-excerpt">A clean, capable task manager built around a good interface and customizable fields...</div>
                             </div>
                             <img class="slide-icon" src="/images/icon-todos.png" alt="Todos icon">
                         </div>
@@ -450,13 +486,14 @@
                 </a>
 
                 <!-- Slide 3: Audio Clips -->
-                <a href="/audio-clips.html" class="carousel-slide">
+                <a href="/audio-clips.html" class="carousel-slide" role="group" aria-roledescription="slide" aria-label="3 of 3: Audio Clips">
                     <div class="slide-inner slide-audio">
                         <div class="slide-top">
                             <div class="slide-text">
                                 <div class="slide-app-name">Audio Clips</div>
                                 <div class="slide-tagline">Capture sound. Keep it.</div>
                                 <div class="slide-coming-soon">Coming Soon</div>
+                                <div class="slide-excerpt">A no-fuss recorder for capturing and keeping audio on your device. Record voice memos, ideas, ambient sound...</div>
                             </div>
                             <img class="slide-icon" src="/images/icon-audio-clips.png" alt="Audio Clips icon">
                         </div>
@@ -467,10 +504,10 @@
                 </a>
             </div>
 
-            <div class="carousel-dots">
-                <button class="dot active" aria-label="Geo Bookmarks"></button>
-                <button class="dot" aria-label="Todos"></button>
-                <button class="dot" aria-label="Audio Clips"></button>
+            <div class="carousel-dots" role="tablist" aria-label="Carousel navigation">
+                <button class="dot active" role="tab" aria-selected="true"  aria-label="Show slide 1: Geo Bookmarks"></button>
+                <button class="dot"        role="tab" aria-selected="false" aria-label="Show slide 2: Todos"></button>
+                <button class="dot"        role="tab" aria-selected="false" aria-label="Show slide 3: Audio Clips"></button>
             </div>
         </div>
 
@@ -493,9 +530,13 @@
         </div>
     </div>
 
+    </div>
+    </main>
+
     <footer>&copy; 2026 Kielbasa Labs LLC &middot; <a href="/privacy.html" style="color: #bbb; text-decoration: none;">Privacy Policy</a> &middot; All rights reserved</footer>
 
     <script>
+        // ── Carousel ──
         const slides = document.querySelectorAll('.carousel-slide');
         const dots   = document.querySelectorAll('.dot');
         let current  = 0;
@@ -504,38 +545,64 @@
         function goTo(n) {
             slides[current].classList.remove('active');
             dots[current].classList.remove('active');
+            dots[current].setAttribute('aria-selected', 'false');
             current = n;
             slides[current].classList.add('active');
             dots[current].classList.add('active');
+            dots[current].setAttribute('aria-selected', 'true');
         }
 
         function next() { goTo((current + 1) % slides.length); }
 
-        function startTimer() { timer = setInterval(next, 3500); }
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        function startTimer() {
+            if (!prefersReducedMotion) timer = setInterval(next, 3500);
+        }
 
         dots.forEach((dot, i) => {
-            dot.addEventListener('click', () => {
-                clearInterval(timer);
-                goTo(i);
-                startTimer();
-            });
+            dot.addEventListener('click', () => { clearInterval(timer); goTo(i); startTimer(); });
         });
 
-        // Pause on hover
+        // Keyboard: left/right arrows on carousel
+        document.getElementById('carousel').addEventListener('keydown', e => {
+            if (e.key === 'ArrowRight') { clearInterval(timer); goTo((current + 1) % slides.length); startTimer(); }
+            if (e.key === 'ArrowLeft')  { clearInterval(timer); goTo((current - 1 + slides.length) % slides.length); startTimer(); }
+        });
+
+        // Pause on hover/focus
         const wrapper = document.getElementById('carousel');
         wrapper.addEventListener('mouseenter', () => clearInterval(timer));
         wrapper.addEventListener('mouseleave', startTimer);
+        wrapper.addEventListener('focusin',  () => clearInterval(timer));
+        wrapper.addEventListener('focusout', startTimer);
 
         startTimer();
 
-        // Hamburger menu
+        // ── Hamburger menu ──
         const hamburger = document.getElementById('hamburger');
         const mobileMenu = document.getElementById('mobile-menu');
         const closeBtn = document.getElementById('mobile-menu-close');
-        hamburger.addEventListener('click', () => mobileMenu.classList.add('open'));
-        closeBtn.addEventListener('click', () => mobileMenu.classList.remove('open'));
-        mobileMenu.querySelectorAll('a').forEach(a => {
-            a.addEventListener('click', () => mobileMenu.classList.remove('open'));
+
+        function openMenu() {
+            mobileMenu.classList.add('open');
+            mobileMenu.setAttribute('aria-hidden', 'false');
+            hamburger.setAttribute('aria-expanded', 'true');
+            closeBtn.focus();
+        }
+        function closeMenu() {
+            mobileMenu.classList.remove('open');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            hamburger.setAttribute('aria-expanded', 'false');
+            hamburger.focus();
+        }
+
+        hamburger.addEventListener('click', openMenu);
+        closeBtn.addEventListener('click', closeMenu);
+        mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', closeMenu));
+
+        // Close on Escape
+        document.addEventListener('keydown', e => {
+            if (e.key === 'Escape' && mobileMenu.classList.contains('open')) closeMenu();
         });
     </script>
 </body>
