@@ -272,6 +272,12 @@
             border-radius: 18px;
             overflow: hidden;
             margin-bottom: 1rem;
+            transition: box-shadow 0.15s ease, transform 0.15s ease;
+        }
+
+        .carousel-wrapper.swiping {
+            box-shadow: 0 0 0 3px rgba(255, 107, 53, 0.35);
+            transform: scale(0.985);
         }
 
         .carousel-slide {
@@ -569,19 +575,42 @@
             if (e.key === 'ArrowLeft')  { clearInterval(timer); goTo((current - 1 + slides.length) % slides.length); startTimer(); }
         });
 
-        // Swipe support
+        // Swipe support (with scroll freeze + highlight)
         let touchStartX = null;
+        let touchStartY = null;
+        let isHorizontal = null;
         const wrapper = document.getElementById('carousel');
-        wrapper.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+
+        wrapper.addEventListener('touchstart', e => {
+            touchStartX = e.touches[0].clientX;
+            touchStartY = e.touches[0].clientY;
+            isHorizontal = null;
+            wrapper.classList.add('swiping');
+        }, { passive: true });
+
+        wrapper.addEventListener('touchmove', e => {
+            if (touchStartX === null) return;
+            const dx = Math.abs(e.touches[0].clientX - touchStartX);
+            const dy = Math.abs(e.touches[0].clientY - touchStartY);
+            if (isHorizontal === null) isHorizontal = dx > dy;
+            if (isHorizontal) e.preventDefault(); // freeze vertical scroll
+        }, { passive: false });
+
         wrapper.addEventListener('touchend', e => {
+            wrapper.classList.remove('swiping');
             if (touchStartX === null) return;
             const diff = touchStartX - e.changedTouches[0].clientX;
-            if (Math.abs(diff) > 40) {
+            if (isHorizontal && Math.abs(diff) > 40) {
                 clearInterval(timer);
                 goTo(diff > 0 ? (current + 1) % slides.length : (current - 1 + slides.length) % slides.length);
                 startTimer();
             }
-            touchStartX = null;
+            touchStartX = touchStartY = isHorizontal = null;
+        }, { passive: true });
+
+        wrapper.addEventListener('touchcancel', () => {
+            wrapper.classList.remove('swiping');
+            touchStartX = touchStartY = isHorizontal = null;
         }, { passive: true });
 
         // Pause on hover/focus
