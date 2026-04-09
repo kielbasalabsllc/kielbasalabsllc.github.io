@@ -60,10 +60,59 @@
         .top-nav a:hover { background: #f0f0f0; color: #111; }
         .top-nav a.active { background: #efefef; color: #111; }
 
-        @media (max-width: 600px) {
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            flex-shrink: 0;
+        }
+        .hamburger span { display: block; width: 22px; height: 2px; background: #222; border-radius: 2px; }
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(250, 250, 250, 0.97);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            z-index: 200;
+            flex-direction: column;
+            padding: 1.5rem 2rem 2rem;
+        }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu-close {
+            align-self: flex-end;
+            background: none;
+            border: none;
+            font-size: 1.3rem;
+            color: #aaa;
+            cursor: pointer;
+            padding: 0.5rem;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+        }
+        .mobile-menu-close:hover { color: #333; }
+        .mobile-nav-links { display: flex; flex-direction: column; }
+        .mobile-nav-links a {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #111;
+            text-decoration: none;
+            letter-spacing: -0.02em;
+            padding: 0.9rem 0;
+            border-bottom: 1px solid #efefef;
+            transition: color 0.15s;
+        }
+        .mobile-nav-links a:last-child { border-bottom: none; }
+        .mobile-nav-links a.active { color: #ff6b35; }
+        @media (max-width: 660px) {
             .top-nav { padding: 0.75rem 1rem; }
-            .nav-links { overflow-x: auto; -webkit-overflow-scrolling: touch; }
-            .top-nav a { font-size: 0.78rem; padding: 0.35rem 0.55rem; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
         }
 
         .page {
@@ -222,7 +271,21 @@
             <a href="/careers.html">Careers</a>
             <a href="/contact.html">Contact</a>
         </div>
+        <button class="hamburger" id="hamburger" aria-label="Open menu">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+
+    <div class="mobile-menu" id="mobile-menu">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&#x2715;</button>
+        <nav class="mobile-nav-links">
+            <a href="/geo-bookmarks.html">Geo Bookmarks</a>
+            <a href="/todos.html" class="active">Todos</a>
+            <a href="/audio-clips.html">Audio Clips</a>
+            <a href="/careers.html">Careers</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+    </div>
 
     <div class="page">
         <a href="/" class="back">&larr; Kielbasa Labs</a>
@@ -269,5 +332,13 @@
             <p>&copy; 2026 Kielbasa Labs LLC &middot; <a href="/">Home</a></p>
         </footer>
     </div>
+    <script>
+        const h = document.getElementById('hamburger');
+        const m = document.getElementById('mobile-menu');
+        const c = document.getElementById('mobile-menu-close');
+        h.addEventListener('click', () => m.classList.add('open'));
+        c.addEventListener('click', () => m.classList.remove('open'));
+        m.querySelectorAll('a').forEach(a => a.addEventListener('click', () => m.classList.remove('open')));
+    </script>
 </body>
 </html>
