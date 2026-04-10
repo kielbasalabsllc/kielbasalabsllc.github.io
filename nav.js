@@ -1,3 +1,16 @@
+// ── Google Analytics ──
+(function () {
+    var s = document.createElement('script');
+    s.async = true;
+    s.src = 'https://www.googletagmanager.com/gtag/js?id=G-KXV9WXZJQW';
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-KXV9WXZJQW');
+}());
+
+// ── Hamburger menu ──
 (function () {
     var h = document.getElementById('hamburger');
     var m = document.getElementById('mobile-menu');
