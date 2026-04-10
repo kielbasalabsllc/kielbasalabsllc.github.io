@@ -298,10 +298,11 @@
 
         .slide-inner {
             padding: 2.5rem 2rem;
-            min-height: 260px;
+            height: 220px;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            overflow: hidden;
         }
 
         .slide-geo  { background: linear-gradient(135deg, #fffbf0, #fff5dc); }
@@ -329,6 +330,10 @@
             color: rgba(0,0,0,0.55);
             line-height: 1.5;
             margin-bottom: 0.6rem;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
         }
 
         .slide-coming-soon {
