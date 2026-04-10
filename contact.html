@@ -13,6 +13,33 @@
         .contact a { color: #555; text-decoration: none; transition: color 0.2s; }
         .contact a:hover { color: #111; }
         .contact p { margin-bottom: 0.4rem; font-size: 0.95rem; }
+
+        /* ── Social links ── */
+        .social-list { list-style: none; }
+        .social-list li {
+            display: flex;
+            align-items: baseline;
+            gap: 0.6rem;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .social-list li:last-child { border-bottom: none; }
+        .social-platform {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #bbb;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            width: 80px;
+            flex-shrink: 0;
+        }
+        .social-list a {
+            font-size: 0.95rem;
+            color: #555;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+        .social-list a:hover { color: #111; }
     </style>
 </head>
 <body>
@@ -71,6 +98,29 @@
         <div class="contact">
             <p>For support with a specific app, reach us at the same address and mention the app name.</p>
         </div>
+
+        <div class="divider"></div>
+
+        <p class="section-label">Social</p>
+        <!-- To add a platform: copy any <li> block below and update the platform name, handle, and href -->
+        <ul class="social-list">
+            <li>
+                <span class="social-platform">Instagram</span>
+                <a href="https://www.instagram.com/kielbasalabs" target="_blank" rel="noopener">@kielbasalabs</a>
+            </li>
+            <li>
+                <span class="social-platform">X</span>
+                <a href="https://x.com/kielbasalabs" target="_blank" rel="noopener">@kielbasalabs</a>
+            </li>
+            <li>
+                <span class="social-platform">YouTube</span>
+                <a href="https://www.youtube.com/@KielbasaLabs" target="_blank" rel="noopener">@KielbasaLabs</a>
+            </li>
+            <li>
+                <span class="social-platform">Facebook</span>
+                <a href="https://www.facebook.com/kielbasalabs" target="_blank" rel="noopener">Kielbasa Labs</a>
+            </li>
+        </ul>
 
         <footer>
             <p>&copy; 2026 Kielbasa Labs LLC &middot; <a href="/">Home</a></p>
