@@ -462,11 +462,14 @@
             touchStartX = touchStartY = isHorizontal = null;
         }, { passive: true });
 
-        // Pause on hover/focus
-        wrapper.addEventListener('mouseenter', () => clearInterval(timer));
-        wrapper.addEventListener('mouseleave', startTimer);
-        wrapper.addEventListener('focusin',  () => clearInterval(timer));
-        wrapper.addEventListener('focusout', startTimer);
+        // Pause on hover/focus (carousel and dots)
+        const dotsEl = document.querySelector('.carousel-dots');
+        [wrapper, dotsEl].forEach(el => {
+            el.addEventListener('mouseenter', () => clearInterval(timer));
+            el.addEventListener('mouseleave', startTimer);
+            el.addEventListener('focusin',  () => clearInterval(timer));
+            el.addEventListener('focusout', startTimer);
+        });
 
         startTimer();
 
