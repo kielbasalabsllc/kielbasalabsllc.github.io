@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Audio Clips — Kielbasa Labs</title>
+    <meta name="description" content="Audio Clips lets you record, name, and keep audio on your device. Simple, private, on-device recording.">
+    <link rel="canonical" href="https://kielbasalabs.com/audio-clips/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%' stop-color='%23ff6b35'/><stop offset='100%' stop-color='%23f7c948'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/></svg>">
+    <link rel="stylesheet" href="/site.css">
+    <style>
+        h1 { margin-bottom: 0.5rem; }
+
+        .tagline { font-size: 1.05rem; color: #999; margin-bottom: 0.75rem; line-height: 1.5; }
+        .coming-soon { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: #dc2626; margin-bottom: 2rem; }
+
+        .illustration {
+            width: 100%; height: 220px;
+            background: linear-gradient(135deg, #ede9fe, #ddd6fe);
+            border-radius: 16px; margin-bottom: 2.5rem;
+            display: flex; align-items: center; justify-content: center; overflow: hidden;
+        }
+        .illustration img { width: 130px; height: 130px; border-radius: 24px; object-fit: cover; }
+
+        .description { font-size: 1.05rem; line-height: 1.75; color: #555; margin-bottom: 1rem; }
+
+        .features { list-style: none; }
+        .features li { font-size: 0.95rem; color: #555; padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 0.6rem; }
+        .features li:last-child { border-bottom: none; }
+        .feature-dot { width: 6px; height: 6px; border-radius: 50%; background: linear-gradient(135deg, #a855f7, #6366f1); flex-shrink: 0; }
+
+        .privacy-link { font-size: 0.85rem; color: #bbb; text-decoration: none; transition: color 0.2s; }
+        .privacy-link:hover { color: #555; }
+    </style>
+</head>
+<body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+    <nav class="top-nav" aria-label="Main navigation">
+        <a href="/"><div class="nav-logo"></div></a>
+        <div class="nav-links">
+            <a href="/geo-bookmarks/">Geo Bookmarks</a>
+            <a href="/todos/">Todos</a>
+            <a href="/audio-clips/" class="active">Audio Clips</a>
+            <a href="/fadetobright/">Fade to Bright</a>
+            <a href="/careers.html">Careers</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+            <span></span><span></span><span></span>
+        </button>
+    </nav>
+
+    <div class="mobile-menu" id="mobile-menu" role="dialog" aria-modal="true" aria-label="Navigation menu" aria-hidden="true">
+        <button class="mobile-menu-close" id="mobile-menu-close" aria-label="Close menu">&#x2715;</button>
+        <nav class="mobile-nav-links">
+            <a href="/geo-bookmarks/">Geo Bookmarks</a>
+            <a href="/todos/">Todos</a>
+            <a href="/audio-clips/" class="active">Audio Clips</a>
+            <a href="/fadetobright/">Fade to Bright</a>
+            <a href="/careers.html">Careers</a>
+            <a href="/contact.html">Contact</a>
+        </nav>
+    </div>
+
+    <div class="page" id="main">
+        <a href="/" class="back">&larr; Kielbasa Labs</a>
+
+        <div class="logo-mark"></div>
+        <h1>Audio Clips</h1>
+        <p class="platform">Mac</p>
+        <p class="tagline">Capture sound. Keep it.</p>
+        <p class="coming-soon">Coming Soon</p>
+
+        <div class="illustration">
+            <img src="/images/icon-audio-clips.png" alt="Audio Clips app icon">
+        </div>
+
+        <p class="description">
+            Audio Clips is a no-fuss recorder for capturing and keeping audio on your device. Record voice memos, ideas, ambient sounds — anything worth holding onto.
+        </p>
+        <p class="description">
+            Name your clips, play them back, keep them organized. Everything stays on your device, private by default.
+        </p>
+
+        <div class="divider"></div>
+
+        <p class="section-label">Features</p>
+        <ul class="features">
+            <li><span class="feature-dot"></span>Record audio clips with one tap</li>
+            <li><span class="feature-dot"></span>Name and organize your recordings</li>
+            <li><span class="feature-dot"></span>Simple playback controls</li>
+            <li><span class="feature-dot"></span>All recordings stay on your device — nothing uploaded</li>
+        </ul>
+
+        <div class="divider"></div>
+
+        <p class="section-label">Support</p>
+        <div class="contact">
+            <p>Questions, feedback, or something not working? Visit the <a href="/audio-clips/support/">Audio Clips Support page</a>.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <a href="/audio-clips/privacy/" class="privacy-link">Privacy Policy &rarr;</a>
+
+        <footer>
+            <p>&copy; 2026 Kielbasa Labs LLC &middot; <a href="/">Home</a></p>
+        </footer>
+    </div>
+    <script src="/nav.js"></script>
+</body>
+</html>
